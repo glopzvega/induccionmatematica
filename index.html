@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="src/css/bootstrap.min.css">
+	<link rel="stylesheet" href="src/css/fontawesome.min.css">
+</head>
+<body>
+
+	<div class="container-fluid" id="induccion">		
+		<div class="row">			
+			<div class="col-12">				
+				<h4>Inducción Matemática</h4>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="alert alert-success">
+					Demostrar el siguiente problema por medio de inducción matemática.
+				</div>
+			</div>
+		</div>
+		<div class="row">						
+			<div class="col-4 offset-4">
+				<img src="src/img/formula.png" alt="" style="width:100%;">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-6">
+				<div class="row">					
+					<div class="col-6">
+						Introduce n:
+						<input id="numero" type="number" v-model.number="n" class="form-control" min="1">
+					</div>					
+				</div>
+				<p id="sucesion">
+					{{ showSucesion }} {{ calcular1 }}
+				</p>
+			</div>			
+			<div class="col-6">
+				<div class="row">					
+					<div class="col-6">
+						Introduce n:
+						<input id="numero2" type="number" v-model.number="n2" class="form-control" min="1">
+					</div>					
+				</div>
+				<p id="induccion" >
+					{{ showEvaluacion }}{{ calcular2 }}
+				</p>
+			</div>			
+		</div>
+	</div>
+	
+	<script src="src/js/jquery-3.3.1.min.js"></script>
+	<script src="src/js/bootstrap.min.js"></script>
+	<script src="src/js/vue.js"></script>
+	<script>
+		let vm = new Vue({
+			el : "#induccion",
+			data : {
+				n : 1,
+				n2 : 1,
+				valor1 : "",
+				valor2 : "",
+				valores1 : [],				
+			},
+			computed : 
+			{
+				showSucesion : function(){
+					let acum = "";
+					$.each(this.valores1, function(index, value){
+						if (acum != "")
+							acum += " + "
+						acum += value						
+					})
+					if (acum != "")
+						return acum + " = "
+
+					return "";
+				},
+
+				showEvaluacion : function(){
+
+					if (this.n2 != "")
+					{
+						let acum = "(" + this.n2 + ")[(2(" + this.n2 + ") - 1)(2(" + this.n2 + ") + 1)] / 3 = "; 
+						return acum;
+					}					
+					return "";
+				},
+
+				calcular1 : function(){					
+					if(this.n != "")
+					{
+						let suma = 0;
+						let valores = [];
+						for (let i=1; i<=this.n; i++)
+						{
+							let result = this.formula1(i)
+							valores.push(result)
+							suma += result;
+						}
+						this.valores1 = valores;
+						this.result = suma;
+						return suma;						
+					}
+					else
+					{			
+						this.valores1 = []			
+						this.result = "Debe introducir un numero entero positivo";
+						return this.result;
+					}
+				},
+				calcular2 : function(){					
+					if(this.n2 != "")
+					{
+						let result2 = this.formula2(this.n2);
+						this.result2 = result2						
+						return result2;
+					}
+					else
+					{
+						this.result2 = "Debe introducir un numero entero positivo";						
+						return this.result2;
+					}
+				},
+			},
+			methods : {							
+				formula1 : function(i){
+					let valor = ((2 * i) - 1 )
+					valor = valor * valor;
+					return valor;
+				},
+				formula2 : function(i){
+					let valor = (i * ((2 * i) - 1 ) * ((2 * i) + 1)) / 3;
+					return valor;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

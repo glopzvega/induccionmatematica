@@ -3,14 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="src/css/bootstrap.min.css">
 	<link rel="stylesheet" href="src/css/fontawesome.min.css">
 </head>
 <body>
 
 	<div class="container-fluid" id="induccion">		
+		<br>
 		<div class="row">			
-			<div class="col-12">				
+			<div class="col">				
 				<h4>Inducción Matemática</h4>
 				<hr>
 			</div>
@@ -23,33 +25,53 @@
 			</div>
 		</div>
 		<div class="row">						
-			<div class="col-4 offset-4">
+			<div class="col-12 col-md-4 offset-md-4">
 				<img src="src/img/formula.png" alt="" style="width:100%;">
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-6">
-				<div class="row">					
-					<div class="col-6">
-						Introduce n:
-						<input id="numero" type="number" v-model.number="n" class="form-control" min="1">
-					</div>					
+			<div class="col-12 col-md-6">
+				<div class="card">
+					<div class="card-body">						
+						<div class="row">					
+							<div class="col-10">
+								Introduce n:
+								<input id="numero" type="number" v-model.number="n" class="form-control" min="1">
+							</div>					
+						</div>
+						<div class="row">
+							<div class="col">							
+								<b>Sucesión:</b>
+								<p id="sucesion">
+									{{ showSucesion }} {{ calcular1 }}
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
-				<p id="sucesion">
-					{{ showSucesion }} {{ calcular1 }}
-				</p>
+				<br>
 			</div>			
-			<div class="col-6">
-				<div class="row">					
-					<div class="col-6">
-						Introduce n:
-						<input id="numero2" type="number" v-model.number="n2" class="form-control" min="1">
+			<div class="col-12 col-md-6">				
+				<div class="card">
+					<div class="card-body">						
+						<div class="row">							
+							<div class="col-10">
+								Introduce n:
+								<input id="numero2" type="number" v-model.number="n2" class="form-control" min="1">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<b> Evaluación: </b>
+								<p id="induccion" >
+									{{ showEvaluacion }}{{ calcular2 }}
+								</p>
+							</div>
+						</div>
 					</div>					
 				</div>
-				<p id="induccion" >
-					{{ showEvaluacion }}{{ calcular2 }}
-				</p>
+				<br>		
 			</div>			
 		</div>
 	</div>
